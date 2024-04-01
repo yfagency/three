@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; // Import OrbitControls
 import WebGL from 'three/addons/capabilities/WebGL.js'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -13,6 +14,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 let shirtColor = 'white';
+const controls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
@@ -48,7 +50,7 @@ function animate() {
 
   if (model) { // Check if the model is loaded
     // Rotate the model
-    model.rotation.y += 0.02; // Example rotation
+    model.rotation.y += 0.01; // Example rotation
   }
 
   renderer.setClearColor(0x333333);

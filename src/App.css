@@ -56,6 +56,10 @@
     margin: 0;
   }
 
+  #root {
+    box-sizing: border-box;
+  }
+
   .card {
     padding: 1.5em 0 0;
   }

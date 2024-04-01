@@ -18,12 +18,27 @@ function App() {
   const loader = new GLTFLoader();
 
   if (window.innerWidth < 600) {
-    renderer.setSize(window.innerWidth, window.innerHeight / 2);
+    renderer.setSize(window.innerWidth, (window.innerHeight / 2));
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight / 2), 0.1, 1000);
   } else {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth < 600) {
+      camera.aspect = window.innerWidth / (window.innerHeight/2);
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, (window.innerHeight/2));
+    } else {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+  });
+
+  console.log(window.innerHeight)
+
   const controls = new OrbitControls(camera, renderer.domElement);
   document.body.appendChild(renderer.domElement);
 

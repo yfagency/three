@@ -1,20 +1,19 @@
 import * as THREE from 'three'
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import WebGL from 'three/addons/capabilities/WebGL.js'
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
 
-// CODE FROM THE OTHER THREE PROJECT
+console.log('app running...')
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
+let shirtColor = 'white';
 
-const controls = new OrbitControls(camera, renderer.domElement);
 const loader = new GLTFLoader();
 
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -22,21 +21,21 @@ document.body.appendChild(renderer.domElement);
 
 let model; // Define a variable to store the loaded model
 
-loader.load('t-shirt.glb', function (gltf) {
+loader.load(`t-shirt-${shirtColor}.glb`, function (gltf) {
   model = gltf.scene;
   scene.add(model);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1); // color, intensity
+  const ambientLight = new THREE.AmbientLight(0xffffff, 5); // color, intensity
   scene.add(ambientLight);
 }, undefined, function (error) {
   console.error(error);
 });
 
-const pointLight = new THREE.PointLight(0xffffff, 1); // color, intensity
+const pointLight = new THREE.PointLight(0xffffff, 10); // color, intensity
 pointLight.position.set(3, 50, 10); // Set position of the light
 scene.add(pointLight);
 
-const pointLightHelper = new THREE.PointLightHelper(pointLight, 1); // Pass the point light and optional size parameter
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 10); // Pass the point light and optional size parameter
 scene.add(pointLightHelper); // Add the helper to the scene
 
 camera.position.z = 100;
@@ -49,8 +48,10 @@ function animate() {
 
   if (model) { // Check if the model is loaded
     // Rotate the model
-    model.rotation.y += 0.01; // Example rotation
+    model.rotation.y += 0.02; // Example rotation
   }
+
+  renderer.setClearColor(0x333333);
 
   renderer.render(scene, camera);
 }
@@ -59,7 +60,9 @@ setInterval(() => {
 
   let currentRotation
 
-  loader.load('t-shirt.glb', function (gltf) {
+  shirtColor == 'white' ? shirtColor = 'yellow' : shirtColor = 'white'
+
+  loader.load(`t-shirt-${shirtColor}.glb`, function (gltf) {
     if (model) {
       currentRotation = {
         x: model.rotation.x,
@@ -87,9 +90,6 @@ if (WebGL.isWebGLAvailable()) {
   const warning = WebGL.getWebGLErrorMessage();
   document.body.appendChild(warning);
 }
-// CODE FROM THE OTHER THREE PROJECT
-
-  const [count, setCount] = useState(0)
 
   return (
     <>

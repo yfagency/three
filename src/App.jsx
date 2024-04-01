@@ -9,22 +9,23 @@ import './App.css'
 function App() {
 
 console.log('app running...')
+let camera
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 let shirtColor = 'white';
 const controls = new OrbitControls(camera, renderer.domElement);
-
-// Disable controls entirely on mobile devices
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    controls.enabled = false;
-}
 
 const loader = new GLTFLoader();
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  renderer.setSize(window.innerWidth, window.innerHeight/2);
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight/2), 0.1, 1000);
+}
 
 let model; // Define a variable to store the loaded model
 

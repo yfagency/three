@@ -16,6 +16,10 @@ const renderer = new THREE.WebGLRenderer();
 let shirtColor = 'white';
 const controls = new OrbitControls(camera, renderer.domElement);
 
+// Disable panning and zooming on touch devices
+controls.enablePan = false; // Disable panning
+controls.enableZoom = false; // Disable zooming
+
 const loader = new GLTFLoader();
 
 renderer.setSize(window.innerWidth, window.innerHeight);

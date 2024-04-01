@@ -27,9 +27,12 @@ function App() {
 
   window.addEventListener('resize', () => {
     if (window.innerWidth < 600) {
-      camera.aspect = window.innerWidth / (window.innerHeight/2);
+      const otherContent = document.getElementById('root');
+      const vh = window.innerHeight * 0.5; // Adjust the percentage as needed
+      otherContent.style.height = `${vh}px`; // Dynamically adjust the height of the other content
+      camera.aspect = window.innerWidth / (window.innerHeight / 2);
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, (window.innerHeight/2));
+      renderer.setSize(window.innerWidth, (window.innerHeight / 2));
     } else {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();

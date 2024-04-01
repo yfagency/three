@@ -15,7 +15,7 @@ document.body.appendChild(renderer.domElement);
 
 let model; // Define a variable to store the loaded model
 
-loader.load('./models/university_library_-_t-shirt_-_white.glb', function (gltf) {
+loader.load('./models/t-shirt.glb', function (gltf) {
   model = gltf.scene;
   scene.add(model);
 
@@ -32,9 +32,9 @@ scene.add(pointLight);
 const pointLightHelper = new THREE.PointLightHelper(pointLight, 1); // Pass the point light and optional size parameter
 scene.add(pointLightHelper); // Add the helper to the scene
 
-camera.position.z = 750;
+camera.position.z = 100;
 camera.position.x = 0;
-camera.position.y = 400;
+camera.position.y = 0;
 
 function animate() {
 
@@ -52,7 +52,7 @@ setInterval(() => {
 
   let currentRotation
 
-  loader.load('./models/university_library_-_t-shirt_-_yellow.glb', function (gltf) {
+  loader.load('./models/t-shirt.glb', function (gltf) {
     if (model) {
       currentRotation = {
         x: model.rotation.x,

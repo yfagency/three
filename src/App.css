@@ -49,6 +49,7 @@
 
   .logo {
     max-height: 40px;
+    display: none;
   }
 
   h1 {
@@ -58,5 +59,9 @@
 
   .card {
     padding: 1.5em 0 0;
+  }
+
+  #root {
+    align-content: center;
   }
 }

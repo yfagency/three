@@ -52,12 +52,16 @@
   }
 
   h1 {
-    font-size: 32px !important;
+    font-size: 24px !important;
     margin: 0;
   }
 
   #root {
     height: 50vh;
     box-sizing: border-box;
+  }
+
+  .card {
+    padding: 1.5em 0 0;
   }
 }

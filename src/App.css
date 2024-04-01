@@ -55,4 +55,9 @@
     font-size: 32px !important;
     margin: 0;
   }
+
+  #root {
+    height: 50vh;
+    box-sizing: border-box;
+  }
 }

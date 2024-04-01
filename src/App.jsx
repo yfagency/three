@@ -20,6 +20,7 @@ function App() {
   if (window.innerWidth < 600) {
     const otherContent = document.getElementById('root');
     const vh = window.innerHeight * 0.5; // Adjust the percentage as needed
+    otherContent.style.boxSizing = 'border-box';
     otherContent.style.height = `${vh}px`; // Dynamically adjust the height of the other content
     renderer.setSize(window.innerWidth, (window.innerHeight / 2));
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight / 2), 0.1, 1000);
@@ -32,6 +33,7 @@ function App() {
     if (window.innerWidth < 600) {
       const otherContent = document.getElementById('root');
       const vh = window.innerHeight * 0.5; // Adjust the percentage as needed
+      otherContent.style.boxSizing = 'border-box';
       otherContent.style.height = `${vh}px`; // Dynamically adjust the height of the other content
       camera.aspect = window.innerWidth / (window.innerHeight / 2);
       camera.updateProjectionMatrix();
